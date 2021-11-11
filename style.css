@@ -1,0 +1,10 @@
+body {
+  font-family: sans-serif;
+}
+
+/* Unformatted list */
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
