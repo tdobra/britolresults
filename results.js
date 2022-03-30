@@ -76,7 +76,7 @@ function editCsv(inString, inName) {
     const para = accept_para.has(cols[1])
 
     // Write row to CSV, prepending BOF number if P-class to avoid clashing with other leagues
-    dispClass = "All"
+    const dispClass = "All"
     if (para) {
       outString += "SEGP" + bof + delim + dispClass + delim + cols[2] + delim + cols[3] + " (P)" + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
     } else {
