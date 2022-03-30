@@ -1,5 +1,9 @@
 "use strict";
 
+// Prepares CSV file for BriTOL results upload
+// Invalid BOF numbers are removed
+// P-class competitors have SEGP prepended to their BOF number, to avoid clashes by BOF number with other leagues, and (P) appended to their name
+
 function writeMsg(msg) {
   const contentEl = document.createElement("li");
   contentEl.textContent = msg;
@@ -62,9 +66,6 @@ function editCsv(inString, inName) {
       return;
     }
 
-    // Write row to All class
-    outString += bof + delim + "O" + delim + cols[2] + delim + cols[3] + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
-
     // Set of classes that will be accepted as physically challenged
     const accept_para = new Set();
     accept_para.add("P");
@@ -73,17 +74,13 @@ function editCsv(inString, inName) {
     accept_para.add("pj");
 
     const para = accept_para.has(cols[1])
-    const junior = parseInt(cols[4].substring(1)) < 21
 
-    // Check for other class eligibility and add rows, prepending BOF number to make unique
+    // Write row to CSV, prepending BOF number if P-class to avoid clashing with other leagues
+    dispClass = "All"
     if (para) {
-      outString += "SEGP" + bof + delim + "P" + delim + cols[2] + delim + cols[3] + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
-    }
-    if (junior) {
-      outString += "SEGJ" + bof + delim + "J" + delim + cols[2] + delim + cols[3] + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
-    }
-    if (para && junior) {
-      outString += "SEGPJ" + bof + delim + "PJ" + delim + cols[2] + delim + cols[3] + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
+      outString += "SEGP" + bof + delim + dispClass + delim + cols[2] + delim + cols[3] + " (P)" + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
+    } else {
+      outString += bof + delim + dispClass + delim + cols[2] + delim + cols[3] + delim + cols[4] + delim + cols[5] + delim + cols[6] + "\n";
     }
   });
 
