@@ -39,7 +39,7 @@ function editCsv(inString, inName) {
   if (inLines[0].split(delim).length < minCols) {
     delim = ";";
     if (inLines[0].split(delim).length < minCols) {
-      segol.writeMsg("Not a valid CSV file");
+      writeMsg("Not a valid CSV file");
       return;
     }
   }
