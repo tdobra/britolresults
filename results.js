@@ -12,7 +12,8 @@ function writeMsg(msg) {
 
 function loadFile() {
   // Reset log
-  removeAllChildren(document.getElementById("status"));
+  statusBox = document.getElementById("status")
+  removeAllChildren(statusBox);
   writeMsg("Reading file...");
 
   const file = document.getElementById("fileSelector").files[0]
