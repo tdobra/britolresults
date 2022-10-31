@@ -12,7 +12,7 @@ function writeMsg(msg) {
 
 function loadFile() {
   // Reset log
-  statusBox = document.getElementById("status");
+  const statusBox = document.getElementById("status");
   removeAllChildren(statusBox);
   writeMsg("Reading file...");
 
