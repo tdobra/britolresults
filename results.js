@@ -12,11 +12,11 @@ function writeMsg(msg) {
 
 function loadFile() {
   // Reset log
-  statusBox = document.getElementById("status")
+  statusBox = document.getElementById("status");
   removeAllChildren(statusBox);
   writeMsg("Reading file...");
 
-  const file = document.getElementById("fileSelector").files[0]
+  const file = document.getElementById("fileSelector").files[0];
   const freader = new FileReader();
   freader.addEventListener("load", () => { editCsv(freader.result, file.name); });
   freader.addEventListener("error", (err) => {
